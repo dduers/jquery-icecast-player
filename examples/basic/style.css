@@ -1,0 +1,12 @@
+#player {
+    background-color: black;
+}
+
+#player button {
+    background-color: darkred;
+    color: white;
+}
+
+#player p {
+    color: white;
+}
