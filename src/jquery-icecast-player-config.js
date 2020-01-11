@@ -10,7 +10,7 @@ $(document).ready(function() {
          * statusUrl
          * the icecast stats json page.
          */
-        statusUrl: 'http://localhost:8000/stats-json.xsl',
+        statusUrl: 'http://localhost:8000/status-json.xsl',
         /**
          * statusServerType
          * the server type of the source where the stats will be read from.

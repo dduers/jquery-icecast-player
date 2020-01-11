@@ -7,7 +7,7 @@
     $.fn.jqueryIcecastPlayer = function(options) {
         var api = {};
         var defaults = {
-            statusUrl: 'http://localhost:8000/stats-json.xsl',
+            statusUrl: 'http://localhost:8000/status-json.xsl',
             statusServerType: 'application/ogg',
             statusTimeout: 30000,
             defaultSiteTitle: 'My Radio Station',
