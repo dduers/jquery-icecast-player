@@ -42,6 +42,9 @@
             if (settings.debug) {			
                 console.log('jqueryShoutcastPlayer: settings', settings);
             }
+            if (!settings.elemPlayerContainer.length) {
+                return;
+            }
             if ($.isFunction(settings.functionInitPayload)) {
                 settings.functionInitPayload();
             }
