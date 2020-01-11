@@ -1,12 +1,22 @@
 #player {
     background-color: black;
+    padding: 25px;
 }
 
 #player button {
     background-color: darkred;
     color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
 }
 
+#player button.disabled {
+    cursor: not-allowed;
+}
+
+#player h2,
 #player p {
     color: white;
+    font-family: 'Arial';
 }
