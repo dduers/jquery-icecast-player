@@ -55,7 +55,7 @@
             }
             api.stopPlayer();
             settings.elemPlayerButton.click(function(event) {
-				event.preventDefault();
+                event.preventDefault();
                 settings.elemPlayerAudio.get(0).paused 
                     ? api.startPlayer()
                     : api.stopPlayer() || location.reload();
