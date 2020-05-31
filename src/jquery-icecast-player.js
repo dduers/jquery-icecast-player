@@ -33,12 +33,12 @@
                 $('#player #serverdescription')
             ],
             functionInitPayload: null,
-			functionOnTrackChange: null,
+            functionOnTrackChange: null,
             debug: false,
         };
         var settings = $.extend(true, {}, defaults, options);
         var flagError = false;
-		var counter = 0;
+        var counter = 0;
         var tag_title;
         var tag_artist;
         var tag_servername;
@@ -56,7 +56,7 @@
             }
             api.stopPlayer();
             settings.elemPlayerButton.click(function(event) {
-				event.preventDefault();
+                event.preventDefault();
                 settings.elemPlayerAudio.get(0).paused 
                     ? api.startPlayer()
                     : api.stopPlayer() || location.reload();
@@ -130,11 +130,11 @@
                         flagError = false;
                         api.enablePlayer();
                         if (data.icestats.source.title && data.icestats.source.server_type == settings.statusServerType) {
-							if ((tag_artist != data.icestats.source.artist) && counter) {
+                            if ((tag_artist != data.icestats.source.artist) && counter) {
                                 if ($.isFunction(settings.functionOnTrackChange)) {
                                     settings.functionOnTrackChange();
                                 }
-							}
+                            }
                             tag_artist = data.icestats.source.artist;
                             tag_title = data.icestats.source.title;
                             tag_servername = data.icestats.source.server_name;
@@ -148,12 +148,12 @@
                                     temp_serverdescription = value.server_description;
                                 }
                             });
-							if ((tag_artist != temp_artist) && counter) {
+                            if ((tag_artist != temp_artist) && counter) {
                                 if ($.isFunction(settings.functionOnTrackChange)) {
                                     settings.functionOnTrackChange();
                                 }
-							}
-							tag_artist = temp_artist;
+                            }
+                            tag_artist = temp_artist;
                             tag_title = temp_title;
                             tag_servername = temp_servername;
                             tag_serverdescription = temp_serverdescription;
@@ -194,7 +194,7 @@
                         api.disablePlayer(); 
                         flagError = true;
                     } 
-					counter++;
+                    counter++;
                     setTimeout(refreshStatus, settings.statusTimeout);
                 },
             });
