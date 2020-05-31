@@ -94,6 +94,11 @@ $(document).ready(function() {
          */
         functionOnTrackChange: null,
         /**
+         * functionOnFirstStatusUpdate
+         * a function that is called on the first meta data update.
+         */
+        functionOnFirstStatusUpdate: null,
+        /**
          * debug
          * eneable or disable debug console outputs
          */

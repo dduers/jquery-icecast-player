@@ -34,6 +34,7 @@
             ],
             functionInitPayload: null,
             functionOnTrackChange: null,
+            functionOnFirstStatusRequest: null,
             debug: false,
         };
         var settings = $.extend(true, {}, defaults, options);
@@ -194,6 +195,9 @@
                         api.disablePlayer(); 
                         flagError = true;
                     } 
+                    if ($.isFunction(settings.functionOnFirstStatusUpdate) && !counter) {
+                        settings.functionOnFirstStatusUpdate();
+                    }
                     counter++;
                     setTimeout(refreshStatus, settings.statusTimeout);
                 },
