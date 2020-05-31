@@ -34,7 +34,7 @@
             ],
             functionInitPayload: null,
             functionOnTrackChange: null,
-            functionOnFirstStatusRequest: null,
+            functionOnFirstStatusUpdate: null,
             debug: false,
         };
         var settings = $.extend(true, {}, defaults, options);
