@@ -89,6 +89,11 @@ $(document).ready(function() {
          */
         functionInitPayload: null,
         /**
+         * functionOnTrackChange
+         * a function that is called when a new track begins to play.
+         */
+        functionOnTrackChange: null,
+        /**
          * debug
          * eneable or disable debug console outputs
          */
