@@ -33,10 +33,15 @@
                 $('#player #serverdescription')
             ],
             functionInitPayload: null,
+			functionOnTrackChange: null,
             debug: false,
         };
         var settings = $.extend(true, {}, defaults, options);
         var flagError = false;
+        var tag_title;
+        var tag_artist;
+        var tag_servername;
+        var tag_serverdescription;
 
         var init = function() {
             if (settings.debug) {			
@@ -49,8 +54,8 @@
                 settings.functionInitPayload();
             }
             api.stopPlayer();
-            settings.elemPlayerButton.click(function() {
-                event.preventDefault();
+            settings.elemPlayerButton.click(function(event) {
+				event.preventDefault();
                 settings.elemPlayerAudio.get(0).paused 
                     ? api.startPlayer()
                     : api.stopPlayer() || location.reload();
@@ -113,10 +118,10 @@
                     setTimeout(refreshStatus, settings.statusTimeout);
                 },
                 success: function(data) {
-                    var tag_title;
-                    var tag_artist;
-                    var tag_servername;
-                    var tag_serverdescription;
+                    var temp_title;
+                    var temp_artist;
+                    var temp_servername;
+                    var temp_serverdescription;
                     if (data && data.icestats.source) {
                         if (flagError) {
                             location.reload();
@@ -124,6 +129,11 @@
                         flagError = false;
                         api.enablePlayer();
                         if (data.icestats.source.title && data.icestats.source.server_type == settings.statusServerType) {
+							if (tag_artist != data.icestats.source.artist) {
+                                if ($.isFunction(settings.functionOnTrackChange)) {
+                                    settings.functionOnTrackChange();
+                                }
+							}
                             tag_artist = data.icestats.source.artist;
                             tag_title = data.icestats.source.title;
                             tag_servername = data.icestats.source.server_name;
@@ -131,12 +141,21 @@
                         } else {
                             $.each(data.icestats.source, function(index, value) {
                                 if (value.server_type == settings.statusServerType) {
-                                    tag_artist = value.artist;
-                                    tag_title = value.title;
-                                    tag_servername = value.server_name;
-                                    tag_serverdescription = value.server_description;
+                                    temp_artist = value.artist;
+                                    temp_title = value.title;
+                                    temp_servername = value.server_name;
+                                    temp_serverdescription = value.server_description;
                                 }
                             });
+							if (tag_artist != temp_artist) {
+                                if ($.isFunction(settings.functionOnTrackChange)) {
+                                    settings.functionOnTrackChange();
+                                }
+							}
+							tag_artist = temp_artist;
+                            tag_title = temp_title;
+                            tag_servername = temp_servername;
+                            tag_serverdescription = temp_serverdescription;
                         }
                         $.each(settings.elementsSongTitle, function(index, element) {
                             if (tag_title ? tag_title : tag_serverdescription) {
