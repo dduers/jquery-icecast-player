@@ -33,7 +33,7 @@
                 $('#player #serverdescription')
             ],
             functionInitPayload: null,
-			functionOnTrackChange: null,
+            functionOnTrackChange: null,
             debug: false,
         };
         var settings = $.extend(true, {}, defaults, options);
@@ -129,11 +129,11 @@
                         flagError = false;
                         api.enablePlayer();
                         if (data.icestats.source.title && data.icestats.source.server_type == settings.statusServerType) {
-							if (tag_artist != data.icestats.source.artist) {
+                            if (tag_artist != data.icestats.source.artist) {
                                 if ($.isFunction(settings.functionOnTrackChange)) {
                                     settings.functionOnTrackChange();
                                 }
-							}
+                            }
                             tag_artist = data.icestats.source.artist;
                             tag_title = data.icestats.source.title;
                             tag_servername = data.icestats.source.server_name;
@@ -147,12 +147,12 @@
                                     temp_serverdescription = value.server_description;
                                 }
                             });
-							if (tag_artist != temp_artist) {
+                            if (tag_artist != temp_artist) {
                                 if ($.isFunction(settings.functionOnTrackChange)) {
                                     settings.functionOnTrackChange();
                                 }
-							}
-							tag_artist = temp_artist;
+                            }
+                            tag_artist = temp_artist;
                             tag_title = temp_title;
                             tag_servername = temp_servername;
                             tag_serverdescription = temp_serverdescription;
