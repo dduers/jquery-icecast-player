@@ -99,6 +99,17 @@ $(document).ready(function() {
          */
         functionOnFirstStatusUpdate: null,
         /**
+         * functionOnStopPlayer
+         * a function that is called on stop player.
+         */
+        functionOnStopPlayer: null,
+        /**
+         * functionOnStartPlayer
+         * a function that is called on start player.
+         */
+        functionOnStartPlayer: null,
+
+        /**
          * debug
          * eneable or disable debug console outputs
          */
