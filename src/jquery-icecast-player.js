@@ -35,6 +35,8 @@
             functionInitPayload: null,
             functionOnTrackChange: null,
             functionOnFirstStatusUpdate: null,
+            functionOnStopPlayer: null,
+            functionOnStartPlayer: null,
             debug: false,
         };
         var settings = $.extend(true, {}, defaults, options);
@@ -66,6 +68,9 @@
             refreshStatus(); 
         };
         api.stopPlayer = function() {
+            if ($.isFunction(settings.functionOnStopPlayer)) {
+            	settings.functionOnStopPlayer();
+            }
             if (settings.elemPlayerAudio.length) {
                 if (!settings.elemPlayerAudio.get(0).paused) {
                     settings.elemPlayerAudio.get(0).pause();
@@ -78,6 +83,9 @@
             }
         };
         api.startPlayer = function() {
+            if ($.isFunction(settings.functionOnStartPlayer)) {
+            	settings.functionOnStartPlayer();
+            }
             if (settings.elemPlayerAudio.length) {
                 settings.elemPlayerAudio.get(0).play();
             }
